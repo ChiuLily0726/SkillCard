@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>受訓紀錄表查詢</title>
+<style type="text/css">
+  body {
+    font-family:Microsoft JhengHei;
+    background-color: #E5E3DE	;
+    margin:0;
+    padding:0;
+  }
+   h1{
+    padding: 50px 0px;
+    line-height: 60px;　
+    letter-spacing:10px;
+    font-size: 40px;
+    background-color: #3d405b;
+    color:#f4f1de;
+  }
+  h2{
+    padding: 10px 40px;
+    border-style:solid;
+    display: inline;
+    border-radius: 10px;
+    border-width:0px 0px 10px 0px;
+    border-color:#fff;
+    background-color: #81b29a;
+    color:#fff;
+    font-weight: BOLD;
+  }
+  input{
+    padding:5px;
+    width:300px;
+  }
+  input:active{
+    border-color: #81b29a;
+  }
+  #inputID{
+    margin:50px 10px 10px 10px;
+    font-weight: BOLD;
+  }
+  .inputButton{
+    margin:10px;
+  }
+
+  #PS{
+    margin:40px;
+  }
+  button{
+    background-color: #3d405b;
+    color:#f4f1de;
+    border-radius: 10px;
+    padding:5px;
+    border-color:#3d405b;
+  }
+  button:hover {
+    background-color: rgba(61, 64, 91,0.8);
+    color:#f4f1de;  
+    border-color:rgba(61, 64, 91,0.8);
+  }
+  button:active {
+    background-color: rgba(61, 64, 91,0.8);
+    color:#f4f1de;
+    border-color:rgba(61, 64, 91,0.8);
+  }
+  
+</style>
+<script>
+  var familys =[
+  {"ID":"IEC070568","LINK":"http://bit.ly/IEC070568_test"},
+  {"ID":"IEC070605","LINK":"http://bit.ly/IEC070605_test"}
+  ];
+  
+  function ShowValue () {  
+   var sum = 0;//判斷查無工號的變數
+   for (var i = 0; i < familys.length; ++i) {
+    //若輸入框的ID有資料庫物件json中，就打開該ID的受訓LINK
+    if (familys[i].ID === document.getElementById("input").value) {
+      window.open(familys[i].LINK, familys[i].ID);
+      break;
+    }
+    //若查無工號
+    sum = sum + 1;
+     if(sum == familys.length){
+       alert("查無此工號，請重新輸入"+"\n"+"There is no such ID number, please re-enter");
+     }
+   }
+ }
+  //連動enter按鍵
+  function keyLogin(){
+    if (event.keyCode==13) //enter的鍵值為13
+    document.getElementById("inputButton").click(); //觸動按鈕的點擊
+  }
+  
+</script>
+</head>
+
+<body>
+    <center><h1 id="inventecMFG">英業達桃園廠製造處<br>Inventec TAO MFG </center>
+  <div>
+    <center><h2>受訓紀錄表 查詢介面</center>
+  </div>
+  <div>
+    <center><p id="inputID">請輸入您的工號 Please enter your ID number</p></center>
+  </div>
+  <div class="inputButton" onkeydown="keyLogin();">
+    <center>
+      <input type="text" id="input" value="工號 (ID number) IECXXXXXX、TAOXXXXXX" onfocus="if(this.value !== '') {this.value=''}">
+      <button onclick="ShowValue()" id="inputButton">查詢 Search</button>
+    </center>
+  </div>
+  <div>
+    <center><p id="PS">註：目前僅放兩組測試帳號(IEC070568、IEC070605)，如若輸入其他工號會跳出提示訊息</p></center>
+  <div>
+</body>
+
+</html>
